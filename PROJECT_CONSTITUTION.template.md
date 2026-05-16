@@ -2,8 +2,8 @@
 
 ## Canonical Project Constitution (AI Engineering Standard — AES)
 
-AES Constitution Version: 1.0  
-Status: Active  
+AES Constitution Version: 1.2
+Status: Active
 Authority Level: Required
 
 ---
@@ -19,7 +19,7 @@ All AI agents and contributors operating in this repository MUST:
 - request clarification when conflicts appear
 - prioritize this document over assumptions
 
-If implementation contradicts this constitution —  
+If implementation contradicts this constitution —
 **the constitution prevails.**
 
 This file acts as the **single source of truth** for the system.
@@ -31,7 +31,7 @@ This file acts as the **single source of truth** for the system.
 AI agents MUST:
 
 1. Read this constitution before generating code
-2. Produce an implementation plan
+2. Produce a specification and implementation plan
 3. Execute work incrementally
 4. Validate changes against defined constraints
 
@@ -51,6 +51,10 @@ Target user:
 
 ## MVP Scope (≤5 items)
 
+1.
+2.
+3.
+
 ---
 
 ## Non-Goals
@@ -63,11 +67,11 @@ Target user:
 
 ## Success Metrics
 
-| Metric             | Target       | Measurement |
-| ------------------ | ------------ | ----------- |
-| Core feature works | Yes          | Smoke test  |
-| Response time      | < \_\_\_ sec | P95 latency |
-| Test coverage      | > \_\_\_%    | CI          |
+| Metric | Target | Measurement |
+| --- | --- | --- |
+| Core feature works | Yes | Smoke test |
+| Response time | < ___ sec | P95 latency |
+| Test coverage | > ___% | CI |
 
 ---
 
@@ -75,29 +79,30 @@ Target user:
 
 ## Frontend
 
-Framework:
-Language:
-Styling:
-State Management:
-Routing:
-HTTP Client:
-UI Library:
-Validation:
+- Framework:
+- Language:
+- Styling:
+- State Management:
+- Routing:
+- HTTP Client:
+- UI Library:
+- Validation:
 
 ## Backend
 
-Framework:
-Database:
-ORM:
-Authentication:
-File Storage:
+- Framework:
+- Language:
+- Database:
+- ORM:
+- Authentication:
+- File Storage:
 
 ## Infrastructure
 
-Package Manager:
-Runtime:
-Deployment:
-Hosting:
+- Package Manager:
+- Runtime:
+- Deployment:
+- Hosting:
 
 ---
 
@@ -105,15 +110,16 @@ Hosting:
 
 ## Architectural Approach
 
-Pattern:
-Layer separation:
-API isolation:
-Error handling:
+- Pattern:
+- Layer separation:
+- API isolation:
+- Error handling:
 
 ---
 
 ## Project Structure
 
+```
 src/
 ├── api/
 ├── components/
@@ -121,6 +127,7 @@ src/
 ├── hooks/
 ├── utils/
 └── types/
+```
 
 ---
 
@@ -140,7 +147,7 @@ User → Action → Result
 
 P0 — Must Have:
 
-As a user I want \_\_\_
+As a user I want ___
 
 P1 — Should Have:
 
@@ -152,49 +159,67 @@ P2 — Nice to Have:
 
 ## Performance
 
-API latency P95:
-Page load:
-Bundle size:
+- API latency P95:
+- Page load:
+- Bundle size:
 
 ## Reliability
 
-Uptime target:
-Healthcheck:
-/health → 200 OK
-
-## Security
-
-Authentication:
-Rate limiting:
-Input validation:
-HTTPS required
+- Uptime target:
+- Healthcheck: /health → 200 OK
 
 ---
 
-# 7. 🗄️ DOMAIN MODEL
+# 7. 🔒 SECURITY
+
+## Forbidden in source code
+
+- Secrets, tokens, API keys, passwords
+- Personally identifiable information (PII)
+- Internal IPs, hostnames, environment URLs
+- Direct requests to production API from dev code
+
+## Agent boundaries
+
+- Push to main/master/release branches: FORBIDDEN
+- Modify CI/CD pipelines: FORBIDDEN
+- Access production data: FORBIDDEN
+- Create/delete infrastructure: FORBIDDEN
+
+## MCP Servers (if applicable)
+
+- Default mode: read-only
+- API keys: via vault / environment variables
+- Registration: every server in team registry
+
+---
+
+# 8. 🗄️ DOMAIN MODEL
 
 Entity1 1:M Entity2
 
 ---
 
-# 8. 🚀 DEPLOYMENT
+# 9. 🚀 DEPLOYMENT
 
-Platform:
-Environment variables:
-CI/CD:
-Rollback strategy:
+- Platform:
+- Environment variables:
+- CI/CD:
+- Rollback strategy:
 
 ---
 
-# 9. ✅ ACCEPTANCE CRITERIA
+# 10. ✅ ACCEPTANCE CRITERIA
 
 A feature is complete when:
 
-[ ] Happy path works
-[ ] Errors handled
-[ ] Zero type errors
-[ ] Responsive UI
-[ ] Loading / Empty / Error states implemented
+- [ ] Happy path works
+- [ ] Errors handled
+- [ ] Zero type errors
+- [ ] Loading / Empty / Error states implemented
+- [ ] Destructive actions require confirmation
+- [ ] No AES violations (hardcoded config, suppressed errors, empty catch, secrets)
+- [ ] Code reviewed
 
 ---
 
@@ -208,4 +233,4 @@ Changes require:
 
 ---
 
-_AI Engineering Standard (AES)_
+*AI Engineering Standard (AES) v1.2*
