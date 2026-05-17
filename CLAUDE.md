@@ -388,7 +388,34 @@ Compliance Level: L1–L4
 
 ---
 
-## 14. Design Principle
+## 14. Maintenance Triggers
+
+Repositories adopting AES SHOULD declare **Maintenance Triggers** — explicit mappings from code changes to documentation sections that MUST be re-verified in the same PR.
+
+The Agent reads `PROJECT_CONSTITUTION.md` and `CLAUDE.md` before each task. If those documents silently drift from the codebase, the Agent treats stale claims as authoritative, propagating outdated assumptions into every downstream implementation. Maintenance Triggers convert "remember to update the contract" from intention into a normative rule the Agent itself enforces.
+
+Example trigger table (projects MAY adapt to their own structure):
+
+| Change in code | Doc section to re-verify |
+| --- | --- |
+| Added/removed tool, public API, or user-facing surface | `PROJECT_CONSTITUTION` §🎯 Scope, §📋 Functional Requirements |
+| Changed schema (DB, file format, API contract) | `PROJECT_CONSTITUTION` §🗄️ Domain Model |
+| Changed env var / configuration key | `PROJECT_CONSTITUTION` §🚀 Deploy |
+| Modified the list of protected resources | `CLAUDE.md` §10 Protected Resources |
+| Modified forbidden practices for this project | `CLAUDE.md` §8 Forbidden Practices |
+| New approved spec or compliance‑level change | All contract headers, project `README` badge |
+
+When a PR touches the LEFT column, the Agent **MUST**:
+
+1. Open the corresponding doc section.
+2. Verify it still describes reality.
+3. Either update it in the same PR, or explicitly state in the PR description why no update is needed.
+
+Maintenance Triggers are the foundation for AES‑L3 ("0 violations in last PR") and AES‑L4 ("CI checks violations automatically") — neither level is verifiable if the source of truth drifts without notice.
+
+---
+
+## 15. Design Principle
 
 > Humans design systems. AI executes them.
 
