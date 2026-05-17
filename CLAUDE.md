@@ -19,7 +19,7 @@ Normative keywords **MUST**, **MUST NOT**, **SHOULD**, **SHOULD NOT**, and **MAY
 
 ### Changelog
 
-- **v1.2** — Language-agnostic rules. Removed hard LOC limit. Added secrets prohibition. Clarified state transitions with artifact gates. Removed redundant sections (Communication Semantics, Project Context duplicate).
+- **v1.2** — Language-agnostic rules. Removed hard LOC limit. Added secrets prohibition. Added Protected Resources section (system config, database, git, credentials). Clarified state transitions with artifact gates. Removed redundant sections (Communication Semantics, Project Context duplicate).
 - **v1.1** — Initial RFC-grade specification.
 
 ---
@@ -285,7 +285,64 @@ The Agent **MUST NOT** introduce forbidden patterns.
 
 ---
 
-## 10. Failure & Stop Conditions
+## 10. Protected Resources
+
+The following resources are **NEVER** modified unless the Human explicitly requests it as the primary goal of the current task.
+
+If the task indirectly requires changes to a protected resource, the Agent **MUST** stop and ask for confirmation before proceeding.
+
+### System configuration
+
+```
+❌ .gitconfig (global and local)
+❌ .ssh/*
+❌ .env, .env.*
+❌ IDE settings and workspace configs
+❌ Shell profiles (.bashrc, .zshrc, .profile)
+```
+
+### Database
+
+```
+❌ Schema changes (ALTER, DROP, CREATE TABLE)
+❌ Data modification in existing tables (UPDATE, DELETE)
+❌ Migration files created by other developers
+❌ Database connection settings
+```
+
+### Project infrastructure
+
+```
+❌ CI/CD configs (.github/workflows, Jenkinsfile, .gitlab-ci.yml)
+❌ Docker configs (Dockerfile, docker-compose.yml)
+❌ Package lock files (package-lock.json, yarn.lock, poetry.lock)
+❌ Dependency files — add only, NEVER remove or downgrade
+❌ Build configs (webpack, vite, tsconfig, babel)
+```
+
+### Git
+
+```
+❌ Branch policies and protection rules
+❌ Hooks (.git/hooks, .husky)
+❌ Remote configuration
+❌ User identity (user.name, user.email)
+```
+
+### Credentials & secrets
+
+```
+❌ API keys, tokens, certificates
+❌ Vault configurations
+❌ Service account credentials
+❌ OAuth/OIDC settings
+```
+
+The Agent **MUST** treat this list as a hard boundary, not a suggestion.
+
+---
+
+## 11. Failure & Stop Conditions
 
 The Agent **MUST STOP execution** and request clarification when:
 
@@ -299,7 +356,7 @@ Execution **MUST NOT** continue under uncertainty.
 
 ---
 
-## 11. Priorities
+## 12. Priorities
 
 In order of importance:
 
@@ -314,7 +371,7 @@ Never sacrifice 1–3 for 4–6.
 
 ---
 
-## 12. AES Compliance
+## 13. AES Compliance
 
 Repositories implementing this contract MAY declare:
 
@@ -332,7 +389,7 @@ Compliance Level: L1–L4
 
 ---
 
-## 13. Design Principle
+## 14. Design Principle
 
 > Humans design systems. AI executes them.
 
