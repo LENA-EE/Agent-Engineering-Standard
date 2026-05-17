@@ -7,7 +7,7 @@
 Compliance: L4 Ready
 
 # 🧭 AI Engineering Standard (AES)
-
+![AES Workflow](aes_v12_workflow.png)
 > **Стандарт разработки ПО с ИИ-агентами.**
 
 **AI Engineering Standard (AES)** — структурированная методология взаимодействия человека и ИИ в разработке программного обеспечения.
