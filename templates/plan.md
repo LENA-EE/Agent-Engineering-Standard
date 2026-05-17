@@ -48,7 +48,7 @@
 **Approval:** ⬜ Not approved
 
 > Implementation MUST NOT begin until this plan is approved.
-> To approve, Human replies: "Approved" or "Yes".
+> To approve, Human replies: "Approved", "Yes", or any clear confirmation.
 
 ---
 

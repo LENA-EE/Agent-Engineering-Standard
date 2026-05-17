@@ -19,8 +19,7 @@ Normative keywords **MUST**, **MUST NOT**, **SHOULD**, **SHOULD NOT**, and **MAY
 
 ### Changelog
 
-- **v1.2** — Language-agnostic rules. Removed hard LOC limit. Added secrets prohibition. Added Protected Resources section (system config, database, git, credentials). Clarified state transitions with artifact gates. Removed redundant sections (Communication Semantics, Project Context duplicate).
-- **v1.1** — Initial RFC-grade specification.
+See [CHANGELOG.md](CHANGELOG.md).
 
 ---
 
@@ -103,7 +102,7 @@ The Agent **MUST NOT** skip states.
 | From | To | Gate (required artifact or condition) |
 | --- | --- | --- |
 | DISCOVERY | PLANNING | Context gathered, clarification questions answered |
-| PLANNING | EXECUTION | spec.md created AND plan.md approved by Human ("yes") |
+| PLANNING | EXECUTION | spec.md created AND plan.md approved by Human (explicit approval) |
 | EXECUTION | REVIEW | Code written, no compilation/build errors |
 | REVIEW | EXECUTION | Issues found → fix required |
 | REVIEW | DEPLOYMENT | 0 violations, acceptance criteria met |
@@ -130,7 +129,7 @@ Agent **MUST** ask the following questions sequentially, one at a time:
 6. "Deadline and mode? (1 hour / 1 day / 1 week / no deadline)"
 7. "What is NOT in MVP scope? (what to skip for now)"
 
-Quick mode (`/constitution --quick`): questions 1, 3, 7 only.
+Quick mode (`/constitution --quick`): questions 1, 2, 3, 7 only.
 
 After receiving all answers, the Agent **MUST**:
 

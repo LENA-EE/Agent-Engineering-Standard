@@ -4,7 +4,7 @@
 
 AES Standard: v1.2
 Execution Contract: CLAUDE.md
-Compliance: L4 Ready
+Compliance: L1
 
 # 🧭 AI Engineering Standard (AES)
 ![AES Workflow](aes_v12_workflow.png)

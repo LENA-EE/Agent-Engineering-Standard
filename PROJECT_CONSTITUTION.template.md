@@ -77,32 +77,31 @@ Target user:
 
 # 2. 🛠️ TECHNOLOGY STACK
 
-## Frontend
+> Adapt sections to your project type. Add components you have, remove what doesn't apply.
+> Examples: web frontend · backend API · mobile app · CLI tool · library / SDK · ML pipeline · desktop app · embedded firmware · DevOps service.
 
-- Framework:
+## Components
+
+For each runtime component of your project:
+
+### {Component name}
+
+- Type:
 - Language:
-- Styling:
-- State Management:
-- Routing:
-- HTTP Client:
-- UI Library:
-- Validation:
-
-## Backend
-
 - Framework:
-- Language:
-- Database:
-- ORM:
-- Authentication:
-- File Storage:
+- Key dependencies:
+- Storage / persistence (if applicable):
 
-## Infrastructure
+### {Add more components as needed}
 
-- Package Manager:
-- Runtime:
+---
+
+## Shared / Infrastructure
+
+- Package manager:
+- Runtime / build target:
 - Deployment:
-- Hosting:
+- Hosting / distribution:
 
 ---
 
@@ -118,6 +117,8 @@ Target user:
 ---
 
 ## Project Structure
+
+> Describe the actual structure of your project. Example below — adapt to your stack's conventions.
 
 ```
 src/
@@ -157,16 +158,19 @@ P2 — Nice to Have:
 
 # 6. ⚡ NON-FUNCTIONAL REQUIREMENTS
 
+> Pick metrics that fit your project type.
+
 ## Performance
 
-- API latency P95:
-- Page load:
-- Bundle size:
+- Primary response / latency target:
+- Secondary metric (size / memory / startup / inference time):
+- Throughput target (if applicable):
 
 ## Reliability
 
-- Uptime target:
-- Healthcheck: /health → 200 OK
+- Availability / uptime target:
+- Health / readiness signal: (e.g., HTTP `/health` → 200, systemd ready, process exit code 0, smoke test passes)
+- Failure recovery strategy:
 
 ---
 
