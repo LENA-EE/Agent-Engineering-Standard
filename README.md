@@ -188,6 +188,20 @@ AI **never starts implementation without an approved plan**.
 
 ---
 
+## 🛡️ Protected Resources
+
+AES defines a hard boundary around resources that agents must **never** modify without explicit request:
+
+* System config — `.gitconfig`, `.ssh`, `.env`, shell profiles
+* Database — schema changes, data modification, migrations by others
+* Infrastructure — CI/CD, Docker, lock files, build configs
+* Git — branch policies, hooks, remotes, user identity
+* Credentials — API keys, tokens, vault configs, certificates
+
+If a task indirectly requires changes to protected resources, the agent **stops and asks**.
+
+---
+
 ## 🎯 Development Priorities
 
 1. Works
@@ -272,6 +286,7 @@ AES formalizes this boundary.
 * Language-agnostic: removed TypeScript-specific rules, works with any stack
 * Removed hard 150 LOC file limit — replaced with "compact and focused" principle
 * Added secrets prohibition to Forbidden Practices
+* Added Protected Resources section — hard boundaries around system config, database, git, credentials
 * Clarified state transitions with artifact gates (spec.md, plan.md)
 * Added `/spec` command
 * Added `/constitution --quick` mode
