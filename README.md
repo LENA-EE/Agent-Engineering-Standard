@@ -7,7 +7,7 @@ Execution Contract: CLAUDE.md
 Compliance: L4 Ready
 
 # 🧭 AI Engineering Standard (AES)
-
+![AES Workflow](aes_v12_workflow.png)
 > **A standard for building software with AI agents.**
 
 **AI Engineering Standard (AES)** is a structured methodology for human–AI collaboration in software development.
