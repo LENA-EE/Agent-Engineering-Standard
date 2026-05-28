@@ -39,6 +39,10 @@ AI agents MUST:
 
 ---
 
+> **Tip:** If you don't know what to write in a section, ask your agent: *"help me fill in PROJECT_CONSTITUTION.md, walk me through the sections."* It will go through §1–§10 with questions and produce a draft for you to review.
+
+---
+
 # 1. 🎯 PRODUCT SCOPE
 
 ## Project Description
