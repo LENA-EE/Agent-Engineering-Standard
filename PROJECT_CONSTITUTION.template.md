@@ -237,4 +237,4 @@ Changes require:
 
 ---
 
-*AI Engineering Standard (AES) v1.2*
+*AI Engineering Standard (AES) v1.3*

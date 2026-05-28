@@ -2,7 +2,7 @@
 [English](README.md) |
 [Русский](README.ru.md)
 
-AES Standard: v1.2
+AES Standard: v1.3
 Execution Contract: CLAUDE.md
 Compliance: L1
 
@@ -280,6 +280,15 @@ AES formalizes this boundary.
 ---
 
 ## 📝 Changelog
+
+### v1.3 (2026-05-28)
+
+* Introduced **Acceptance Floor** (§3.2) as a named invariant — the REVIEW → DEPLOYMENT transition is gated by an explicit act of human acceptance, never removed by maturity, complexity, or passing verification.
+* **Verification-first**: Agent **MUST** declare its verification approach in PLANNING (and **MUST** cover any defined acceptance criteria) and execute it in REVIEW. Self-review, verification execution, and acceptance are now three distinct activities in REVIEW.
+* **Stack-agnostic integrity check**: EXECUTION → REVIEW gate now reads "the project's defined integrity check passes" instead of "no compilation/build errors".
+* **Operational mechanisms** (branching, merge, release gating) anchor in §3.2 — they *express* acceptance but do not substitute for the invariant.
+* PLANNING gate is **partially compressible** (plan/spec formality scales with project maturity); verification declaration is not.
+* Explicit compressibility framing across §4 makes the gate hierarchy unambiguous: which transitions can be simplified, which cannot.
 
 ### v1.2 (2026-05)
 

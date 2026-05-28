@@ -49,4 +49,4 @@
 
 ---
 
-*AES v1.2 — spec template*
+*AES v1.3 — spec template*

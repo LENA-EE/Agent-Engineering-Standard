@@ -237,4 +237,4 @@ P2 — Nice to Have:
 
 ---
 
-*AI Engineering Standard (AES) v1.2*
+*AI Engineering Standard (AES) v1.3*

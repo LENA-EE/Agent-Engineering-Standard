@@ -1,6 +1,6 @@
 # CLAUDE.md — AI Engineering Standard (AES)
 
-## Execution Contract Specification v1.2 (RFC‑Grade)
+## Execution Contract Specification v1.3 (RFC‑Grade)
 
 > This file is automatically consumed by AI agents operating inside the repository.
 > It defines the normative execution contract between the Human Architect and the AI Agent.
@@ -9,7 +9,7 @@
 
 ## 0. Status of This Document
 
-This document defines **AES Execution Contract v1.2**.
+This document defines **AES Execution Contract v1.3**.
 
 - This specification is **normative**.
 - Conforming agents **MUST** follow all requirements defined herein.
@@ -66,7 +66,7 @@ The Agent operates strictly within the following finite states:
 DISCOVERY → PLANNING → EXECUTION → REVIEW → DEPLOYMENT
 ```
 
-### State Definitions
+### 3.1 State Definitions
 
 **DISCOVERY**
 
@@ -76,10 +76,10 @@ DISCOVERY → PLANNING → EXECUTION → REVIEW → DEPLOYMENT
 
 **PLANNING**
 
-- Produce specification (spec.md)
-- Produce implementation plan (plan.md)
+- Produce specification (`spec.md`) — formality of this artifact MAY be reduced where the simplicity rule permits
+- Produce implementation plan (`plan.md`) — formality MAY be reduced under the same rule
+- **Declare the verification approach** — what will be checked, and by what means (automated tests, scripted checks, manual run). Where acceptance criteria exist (in `spec.md` or the constitution), the verification approach **MUST** cover them; the Agent **MUST NOT** narrow the bar by declaring partial coverage. This declaration is **NOT** subject to simplification.
 - Identify risks
-- Await approval
 
 **EXECUTION**
 
@@ -87,7 +87,11 @@ DISCOVERY → PLANNING → EXECUTION → REVIEW → DEPLOYMENT
 
 **REVIEW**
 
-- Validate quality & constitution compliance
+REVIEW is composed of three distinct, ordered activities:
+
+1. **Self-review.** The Agent validates its diff against §7–§8 and the constitution, and reports findings.
+2. **Verification execution.** The Agent runs the verification approach declared in PLANNING and appends the results to the evidence package.
+3. **Acceptance.** Acceptance is performed by the Human (see §3.2). The Agent **MUST NOT** self-issue acceptance.
 
 **DEPLOYMENT**
 
@@ -95,21 +99,38 @@ DISCOVERY → PLANNING → EXECUTION → REVIEW → DEPLOYMENT
 
 The Agent **MUST NOT** skip states.
 
+### 3.2 Acceptance Floor (Invariant)
+
+The transition from REVIEW to DEPLOYMENT is gated by an explicit act of human acceptance.
+
+- No project setting, complexity classification, simplicity allowance, or successful verification result removes this gate.
+- The subject of acceptance is **always** a Human.
+- The form of evidence the Agent presents in support of acceptance MAY vary by project maturity, by domain, and by tool. The requirement for human acceptance does **not**.
+- An acceptance signal is any clear, explicit human expression of approval — verbal, written, or via a human-only action (merge, release tag, PR approval). The Agent recognizes a signal; the Agent does not issue one.
+- For projects deployed to real users, the Agent **SHOULD** require a durable artifact (PR approval, signed merge commit, release sign-off) as the acceptance signal, not only an in-conversation utterance.
+- Operational mechanisms that **express** acceptance in version control or deployment tooling (branching policy, merge workflow, release gating) are defined separately and **do not substitute** for this invariant.
+
+> Verification establishes the substance of acceptance. The Acceptance Floor establishes its subject. The two are layered, not interchangeable.
+
 ---
 
 ## 4. State Transitions
 
 | From | To | Gate (required artifact or condition) |
 | --- | --- | --- |
-| DISCOVERY | PLANNING | Context gathered, clarification questions answered |
-| PLANNING | EXECUTION | spec.md created AND plan.md approved by Human (explicit approval) |
-| EXECUTION | REVIEW | Code written, no compilation/build errors |
-| REVIEW | EXECUTION | Issues found → fix required |
-| REVIEW | DEPLOYMENT | 0 violations, acceptance criteria met |
+| DISCOVERY | PLANNING | Context gathered; clarification questions answered |
+| PLANNING | EXECUTION | (a) Verification approach declared (**MUST**); (b) plan formality consistent with the simplicity rule; (c) for non-trivial changes, `plan.md` approved by the Human |
+| EXECUTION | REVIEW | Code written; the project's defined integrity check passes (compilation, build, lint, smoke test, syntax + import resolution — whichever the stack defines) |
+| REVIEW | EXECUTION | Issues found by self-review, by verification execution, or raised at acceptance — fix required |
+| REVIEW | DEPLOYMENT | (a) Self-review clean; (b) verification executed, results recorded; (c) **Acceptance Floor satisfied (§3.2)** |
 
-If approval is missing, transition **MUST NOT** occur.
+If a required gate condition is missing, the transition **MUST NOT** occur.
 
-If the Human requests implementation without a spec, the Agent **MUST** first ask clarification questions and produce a spec.
+If the Human requests implementation without a spec, the Agent **MUST** first ask clarification questions and produce — at minimum — the verification approach and an outline of the change. A formal `spec.md` MAY be deferred where the simplicity rule permits; the verification declaration MAY **NOT**.
+
+The PLANNING gate is **partially compressible**: plan and spec formality scale with project maturity and task complexity. The PLANNING gate is **NOT compressible** with respect to the verification declaration.
+
+The REVIEW → DEPLOYMENT gate is **non-compressible** under the Acceptance Floor (§3.2). Verification results, however strong, do not constitute acceptance; they constitute evidence on which the Human's acceptance decision is made.
 
 ---
 
@@ -375,7 +396,7 @@ Never sacrifice 1–3 for 4–6.
 Repositories implementing this contract MAY declare:
 
 ```
-AES Execution Contract: v1.2
+AES Execution Contract: v1.3
 Compliance Level: L1–L4
 ```
 

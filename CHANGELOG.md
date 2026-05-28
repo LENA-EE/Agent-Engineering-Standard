@@ -4,6 +4,24 @@ All notable changes to AES are documented in this file.
 
 ---
 
+## v1.3 (2026-05-28)
+
+### Added
+- **§3.2 Acceptance Floor (invariant)** — named, callable invariant: the REVIEW → DEPLOYMENT transition is gated by an explicit act of human acceptance. No project setting, complexity classification, simplicity allowance, or successful verification result removes this gate. The subject of acceptance is always a Human.
+- **Verification-first triple** — PLANNING now requires the Agent to declare the verification approach. Where acceptance criteria exist (in `spec.md` or the constitution), the verification approach **MUST** cover them; the Agent **MUST NOT** narrow the bar. The verification declaration is **NOT** subject to simplification.
+- **REVIEW state composed of three distinct ordered activities**: (1) self-review, (2) verification execution, (3) acceptance by the Human. The Agent **MUST NOT** self-issue acceptance.
+- **REVIEW → EXECUTION** is now reachable from three sources: self-review findings, verification execution findings, or rejection raised at acceptance (e.g., insufficient verification approach).
+- **Operational-mechanisms anchor** in §3.2 — branching policy, merge workflow, and release gating *express* acceptance but do not substitute for the invariant (placeholder for forthcoming Branching & Review Policy).
+
+### Changed
+- **§3 State Model** restructured: state definitions promoted to §3.1; new §3.2 Acceptance Floor.
+- **§4 EXECUTION → REVIEW gate** is now stack-agnostic: "the project's defined integrity check passes (compilation, build, lint, smoke test, syntax + import resolution — whichever the stack defines)" instead of "no compilation/build errors". Same logic, written into the norm instead of guessed from the stack.
+- **§4 PLANNING → EXECUTION gate**: plan/spec formality is partially compressible per the simplicity rule; verification declaration is NOT compressible; `plan.md` approval is required only for non-trivial changes.
+- **§4 REVIEW → DEPLOYMENT gate** explicitly references §3.2 Acceptance Floor; verification results, however strong, do not constitute acceptance — they are evidence on which the Human's acceptance decision is made.
+- **Compressibility framing** made explicit across §4: which transitions are partially compressible (PLANNING), which are non-compressible (REVIEW → DEPLOYMENT under the Acceptance Floor).
+
+---
+
 ## v1.2 (2026-05)
 
 ### Added

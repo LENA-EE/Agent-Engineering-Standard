@@ -244,4 +244,4 @@ A feature is complete when:
 
 ---
 
-*AES v1.2 — AI Engineering Standard*
+*AES v1.3 — AI Engineering Standard*
