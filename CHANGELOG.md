@@ -12,6 +12,7 @@ All notable changes to AES are documented in this file.
 - **REVIEW state composed of three distinct ordered activities**: (1) self-review, (2) verification execution, (3) acceptance by the Human. The Agent **MUST NOT** self-issue acceptance.
 - **REVIEW → EXECUTION** is now reachable from three sources: self-review findings, verification execution findings, or rejection raised at acceptance (e.g., insufficient verification approach).
 - **Operational-mechanisms anchor** in §3.2 — branching policy, merge workflow, and release gating *express* acceptance but do not substitute for the invariant (placeholder for forthcoming Branching & Review Policy).
+- **Onboarding tip** in `PROJECT_CONSTITUTION.template.md` and `.ru.md` — short hint that the user can ask their agent to walk them through filling the constitution section by section, instead of staring at empty placeholders.
 
 ### Changed
 - **§3 State Model** restructured: state definitions promoted to §3.1; new §3.2 Acceptance Floor.
